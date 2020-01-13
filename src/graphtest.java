@@ -1,5 +1,3 @@
-import com.sun.corba.se.impl.orbutil.graph.GraphImpl;
-
 // Testprogramm für Graphalgorithmen.
 class GraphTest {
   // Testgraphen.
