@@ -1,7 +1,7 @@
 public class BFSImpl implements BFS {
   @Override
   public void search(Graph g, int s) {
-	
+	return;
   }
   
   @Override
