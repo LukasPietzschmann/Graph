@@ -38,11 +38,11 @@ public class BFSImpl implements BFS {
   
   @Override
   public int dist(int v) {
-	return 0;
+	return this.dist[v];
   }
   
   @Override
   public int pred(int v) {
-	return 0;
+	return this.pred[v];
   }
 }
