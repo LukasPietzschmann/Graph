@@ -10,6 +10,7 @@ public class BFSImpl implements BFS {
 	dist = new int[g.size()];
 	pred = new int[g.size()];
 	int u;
+	int v;
 
 	for(int i = 0; i < g.size(); i++)
     {
@@ -24,8 +25,9 @@ public class BFSImpl implements BFS {
 	while(!q.isEmpty())
     {
         u = this.q.remove();
-        for(int v = 0; v < g.deg(u); v++)
+        for(int i = 0; i < g.deg(u); i++)
         {
+            v = g.succ(u, i);
             if(dist(v) == INF)
                 this.dist[v] = dist(u) + 1;
                 this.pred[v] = u;
