@@ -39,8 +39,9 @@ public class WeightedGraphImpl implements WeightedGraph {
 	}
 	
 	for (int i = 0; i < size(); i++) {
-	  aTransposed[i] = new int[temp[i].size()];
-	  for (int j = 0; j < temp[i].size(); j++) {
+	  int size = temp[i] == null ? 0 : temp[i].size();
+	  aTransposed[i] = new int[size];
+	  for (int j = 0; j < size; j++) {
 		aTransposed[i][j] = temp[i].get(j);
 	  }
 	}
