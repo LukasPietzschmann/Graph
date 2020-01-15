@@ -6,36 +6,47 @@ public class DFSImpl implements DFS {
   
   @Override
   public void search(Graph g) {
+	sortedQueue = new ArrayList<>();
 	dg = new DFSGraph(g);
 	
 	for (int u = 0; u < g.size(); u++) {
 	  if (dg.colors[u] == DFSGraph.WHITE) {
 		dg.pred[u] = DFSGraph.NIL;
-		search(u, dg);
+		search(u, dg, false);
 	  }
 	}
   }
   
-  private boolean search(int u, DFSGraph dg) {
+  private boolean search(int u, DFSGraph dg, boolean breakIfCircle) {
 	dg.setDiscovery(u);
 	for (int i = 0; i < dg.graph.deg(u); i++) {
 	  int v = dg.graph.succ(u, i);
 	  
 	  if (dg.colors[v] == DFSGraph.WHITE) {
 		dg.pred[v] = u;
-		search(v, dg);
-	  }else if (dg.colors[v] == DFSGraph.GREY) return false;
-	  
-	  dg.setCompletion(u);
-	  if (sortedQueue != null) sortedQueue.add(u);
+		if (!search(v, dg, breakIfCircle)) return false;
+		//TODO evtl doch mit Exception lösen und nicht mit Rückgabewert, funktioniert aber auch super so :)
+	  }else if (breakIfCircle && dg.colors[v] == DFSGraph.GREY) return false;
 	}
+	
+	dg.setCompletion(u);
+	sortedQueue.add(u);
 	
 	return true;
   }
   
   @Override
   public void search(Graph g, DFS d) {
+	sortedQueue = new ArrayList<>();
+	dg = new DFSGraph(g);
 	
+	for (int i = g.size() - 1; i >= 0; i--) {
+	  int u = d.sequ(i);
+	  if (dg.colors[u] == DFSGraph.WHITE) {
+		dg.pred[u] = DFSGraph.NIL;
+		search(u, dg, false);
+	  }
+	}
   }
   
   @Override
@@ -46,7 +57,7 @@ public class DFSImpl implements DFS {
 	for (int u = 0; u < g.size(); u++) {
 	  if (dg.colors[u] == DFSGraph.WHITE) {
 		dg.pred[u] = DFSGraph.NIL;
-		if (!search(u, dg)) return false;
+		if (!search(u, dg, true)) return false;
 	  }
 	}
 	
@@ -65,7 +76,6 @@ public class DFSImpl implements DFS {
   
   @Override
   public int sequ(int i) {
-	//TODO vllt falsch rum
 	return sortedQueue.get(i);
   }
   
