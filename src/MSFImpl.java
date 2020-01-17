@@ -31,10 +31,6 @@ public class MSFImpl implements MSF {
       u = (int) bHeap.extractMin().data();
 
     }
-
-
-
-
   }
   
   @Override
