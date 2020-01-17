@@ -40,7 +40,17 @@ class GraphTest {
 			public Graph transpose() {
 			  return this;
 			}
-		  }
+		  },
+		  
+		  new GraphImpl(new int[][]{
+				  {1, 3, 5},
+				  {},
+				  {3, 6},
+				  {4, 5},
+				  {0, 5},
+				  {1},
+				  {2, 4, 6}
+		  })
   };
   
   // name und value ausgeben.
