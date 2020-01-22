@@ -4,7 +4,37 @@ public class SPImpl implements SP {
   
   @Override
   public boolean bellmanFord(WeightedGraph g, int s) {
-	return false;
+	pred = new int[g.size()];
+	dist = new double[g.size()];
+	
+	for (int v = 0; v < g.size(); v++) {
+	  if (v == s) dist[v] = 0;
+	  else dist[v] = SP.INF;
+	  pred[v] = SP.NIL;
+	}
+	
+	for (int i = 0; i < g.size(); i++) {
+	  for (int u = 0; u < g.size(); u++) {
+		for (int j = 0; j < g.deg(u); j++) {
+		  int v = g.succ(u, j);
+		  double path = dist[u] + g.weight(u, j);
+		  
+		  if (path < dist[v]) {
+			dist[v] = path;
+			pred[v] = u;
+		  }
+		}
+	  }
+	}
+ 
+	for (int u = 0; u < g.size(); u++) {
+	  for (int j = 0; j < g.deg(u); j++) {
+		int v = g.succ(u, j);
+		if (dist[u] + g.weight(u, j) < dist[v]) return false;
+	  }
+	}
+	
+	return true;
   }
   
   @Override
