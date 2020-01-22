@@ -39,6 +39,18 @@ class GraphTest {
 				  {5, 5, 4}
 		  }),
 		  
+		  new WeightedGraphImpl(new int[][]{
+				  {3},
+				  {0},
+				  {0, 1},
+				  {1, 2}
+		  }, new double[][]{
+				  {4},
+				  {3},
+				  {6, 2},
+				  {5, 1}
+		  }),
+		  
 		  // Eine ungewöhnliche Implementierung des Graphen 0 <-> 1
 		  // ohne Verwendung von Adjazenzlisten.
 		  new Graph() {
