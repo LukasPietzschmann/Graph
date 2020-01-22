@@ -1,36 +1,31 @@
 public class MSFImpl implements MSF {
-  BinHeap bHeap = new BinHeap();
+  BinHeap<Double, Integer> heap = new BinHeap();
+  BinHeap.Entry entries[];
   int pred[];
-  BinHeap.Entry entryArr[];
-
+  
   @Override
   public void compute(WeightedGraph g, int s) {
-    pred = new int[g.size()];
-    entryArr = new BinHeap.Entry[g.size()];
-
-    for(int i = 0; i < g.size(); i++)
-    {
-      if(i != s) {
-        //entry in the 0th spot is always null -- s never gets a prio
-        entryArr[i] = bHeap.insert(-1, i);
-      }
-      pred[i] = -1;
-    }
-
-    int u = s;
-
-    while(!bHeap.isEmpty()){
-      for(int i = 0; i < g.deg(u); i++){
-        int v = g.succ(u, i);
-
-        if(bHeap.contains(entryArr[v]) && (double) entryArr[v].prio() > g.weight(u, v)){
-          bHeap.changePrio(entryArr[v], g.weight(u, v));
-          pred[v] = u;
-        }
-      }
-      u = (int) bHeap.extractMin().data();
-
-    }
+	pred = new int[g.size()];
+	entries = new BinHeap.Entry[g.size()];
+	
+	for (int v = 0; v < g.size(); v++) {
+	  if (v != s) entries[v] = heap.insert((double) MSF.NIL, v);
+	  pred[v] = MSF.NIL;
+	}
+	
+	int u = s;
+	
+	while (!heap.isEmpty()) {
+	  for (int i = 0; i < g.deg(u); i++) {
+		int v = g.succ(u, i);
+		
+		if (heap.contains(entries[v]) && ((Double) entries[v].prio() == MSF.NIL || g.weight(u, i) < (Double) entries[v].prio())) {
+		  heap.changePrio(entries[v], g.weight(u, i));
+		  pred[v] = u;
+		}
+	  }
+	  u = (Integer) heap.extractMin().data();
+	}
   }
   
   @Override
