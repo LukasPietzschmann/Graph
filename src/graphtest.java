@@ -21,6 +21,23 @@ class GraphTest {
 				  {},
 				  {-3.7}    // Gewicht der Kante (2, 0).
 		  }),
+		
+		  // Beispiel eines gewichteten ungerichteten Graphen.
+		  new WeightedGraphImpl(new int[][]{
+				  {1, 5, 4},
+				  {0, 2, 3, 4, 5},
+				  {1, 4, 3},
+				  {2, 1, 4},
+				  {3, 2, 1, 0, 5},
+				  {0, 1, 4}
+		  }, new double[][]{
+				  {3, 5, 1},
+				  {3, 8, 7, 2, 5},
+				  {8, 7, 5},
+				  {5, 7, 8},
+				  {8, 7, 2, 1, 4},
+				  {5, 5, 4}
+		  }),
 		  
 		  // Eine ungewöhnliche Implementierung des Graphen 0 <-> 1
 		  // ohne Verwendung von Adjazenzlisten.
