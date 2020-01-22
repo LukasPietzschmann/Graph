@@ -1,12 +1,12 @@
 public class MSFImpl implements MSF {
-  BinHeap<Double, Integer> heap = new BinHeap();
-  BinHeap.Entry entries[];
   int pred[];
   
   @Override
   public void compute(WeightedGraph g, int s) {
+	BinHeap<Double, Integer> heap = new BinHeap();
+	BinHeap.Entry entries[] = new BinHeap.Entry[g.size()];
+	
 	pred = new int[g.size()];
-	entries = new BinHeap.Entry[g.size()];
 	
 	for (int v = 0; v < g.size(); v++) {
 	  if (v != s) entries[v] = heap.insert((double) MSF.NIL, v);
