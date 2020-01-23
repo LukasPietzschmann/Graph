@@ -16,11 +16,13 @@ public class WeightedGraphImpl implements WeightedGraph {
   
   @Override
   public int deg(int v) {
+	if(v >= a.length) return -1;
 	return a[v].length;
   }
   
   @Override
   public int succ(int v, int i) {
+	if(v >= a.length) return -1;
 	return a[v][i];
   }
   
@@ -51,6 +53,7 @@ public class WeightedGraphImpl implements WeightedGraph {
   
   @Override
   public double weight(int v, int i) {
+	if(v >= a.length) return -1;
 	return w[v][i];
   }
 }

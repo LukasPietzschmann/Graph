@@ -6,6 +6,7 @@ public class DFSImpl implements DFS {
   
   @Override
   public void search(Graph g) {
+    if(g == null) return;
 	sortedQueue = new ArrayList<>();
 	dg = new DFSGraph(g);
 	
@@ -37,6 +38,7 @@ public class DFSImpl implements DFS {
   
   @Override
   public void search(Graph g, DFS d) {
+    if(g == null || d == null) return;
 	sortedQueue = new ArrayList<>();
 	dg = new DFSGraph(g);
 	
@@ -51,6 +53,7 @@ public class DFSImpl implements DFS {
   
   @Override
   public boolean sort(Graph g) {
+    if(g == null) return false;
 	sortedQueue = new ArrayList<>();
 	dg = new DFSGraph(g);
 	
@@ -66,16 +69,19 @@ public class DFSImpl implements DFS {
   
   @Override
   public int det(int v) {
+    if(v < 0 || v >= dg.discovery.length) return -1;
 	return dg.discovery[v];
   }
   
   @Override
   public int fin(int v) {
+	if(v < 0 || v >= dg.completion.length) return -1;
 	return dg.completion[v];
   }
   
   @Override
   public int sequ(int i) {
+	if(i < 0 || i >= sortedQueue.size()) return -1;
 	return sortedQueue.get(i);
   }
   

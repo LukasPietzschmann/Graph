@@ -9,6 +9,7 @@ public class SCCImpl implements SCC {
   
   @Override
   public void compute(Graph g) {
+    if(g == null) return;
 	components = new HashMap<>();
 	
 	DFS dfs1 = new DFSImpl();
@@ -56,6 +57,7 @@ public class SCCImpl implements SCC {
   
   @Override
   public int component(int v) {
+    if(v < 0 || v >= components.size()) return -1;
 	return components.get(v);
   }
 }

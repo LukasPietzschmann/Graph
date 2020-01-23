@@ -4,22 +4,26 @@ class GraphTest {
   // (Für eigene Tests können beliebige weitere Testgraphen
   // hinzugefügt werden.)
   private static Graph[] graphs = {
+  		new GraphImpl(new int[][]{
+				{}
+		}),
+  		
 		  // Beispiel eines ungewichteten Graphen.
 		  new GraphImpl(new int[][]{
-				  {1, 2},    // Knoten 0 hat als Nachfolger Knoten 1 und 2.
-				  {},    // Knoten 1 hat keine Nachfolger.
-				  {2}    // Knoten 2 hat als Nachfolger sich selbst.
+				  {1, 2},
+				  {},
+				  {2}
 		  }),
 		  
 		  // Beispiel eines gewichteten Graphen.
 		  new WeightedGraphImpl(new int[][]{
-				  {1, 2},    // Knoten 0 hat als Nachfolger Knoten 1 und 2.
-				  {},    // Knoten 1 hat keine Nachfolger.
-				  {2}    // Knoten 2 hat als Nachfolger sich selbst.
-		  }, new double[][]{
-				  {1.5, 0},    // Gewichte der Kanten (0, 1) und (0, 2).
+				  {1, 2},
 				  {},
-				  {-3.7}    // Gewicht der Kante (2, 0).
+				  {2}
+		  }, new double[][]{
+				  {1.5, 0},
+				  {},
+				  {-3.7}
 		  }),
 		
 		  // Beispiel eines gewichteten ungerichteten Graphen.

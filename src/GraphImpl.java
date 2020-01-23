@@ -14,17 +14,18 @@ public class GraphImpl implements Graph {
   
   @Override
   public int deg(int v) {
+    if(v >= a.length) return -1;
 	return a[v].length;
   }
   
   @Override
   public int succ(int v, int i) {
+	if(v >= a.length) return -1;
 	return a[v][i];
   }
   
   @Override
   public Graph transpose() {
-	//TODO laufzeit is noch übelster Bullshit. Geht bestimmt noch besser, aber fürs erste klappts :)
 	int[][] aTransposed = new int[a.length][];
 	ArrayList<Integer>[] temp = new ArrayList[size()];
 	
@@ -45,14 +46,5 @@ public class GraphImpl implements Graph {
 	}
 	
 	return new GraphImpl(aTransposed);
-  }
-  
-  private int countNum(int n) {
-	int c = 0;
-	for (int i = 0; i < a.length; i++) {
-	  for (int j = 0; j < a[i].length; j++) if (a[i][j] == n) c++;
-	}
-	
-	return c;
   }
 }

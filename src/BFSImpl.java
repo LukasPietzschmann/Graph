@@ -7,6 +7,7 @@ public class BFSImpl implements BFS {
   
   @Override
   public void search(Graph g, int s) {
+    if(g == null || (s < 0 || s >= g.size())) return;
 	dist = new int[g.size()];
 	pred = new int[g.size()];
 	int u;
@@ -14,7 +15,7 @@ public class BFSImpl implements BFS {
 	
 	for (int i = 0; i < g.size(); i++) {
 	  dist[i] = INF;
-	  pred[i] = INF;
+	  pred[i] = NIL;
 	}
 	
 	dist[s] = 0;
@@ -38,11 +39,13 @@ public class BFSImpl implements BFS {
   
   @Override
   public int dist(int v) {
+    if(v < 0 || v >= dist.length) return -1;
 	return dist[v];
   }
   
   @Override
   public int pred(int v) {
+	if(v < 0 || v >= pred.length) return -1;
 	return pred[v];
   }
 }
