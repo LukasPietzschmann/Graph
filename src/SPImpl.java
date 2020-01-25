@@ -4,14 +4,14 @@ public class SPImpl implements SP {
   
   @Override
   public boolean bellmanFord(WeightedGraph g, int s) {
-    if(g == null || (s < 0 || s >= g.size())) return false;
+	if (g == null || (s < 0 || s >= g.size())) return false;
 	pred = new int[g.size()];
 	dist = new double[g.size()];
 	
 	for (int v = 0; v < g.size(); v++) {
 	  if (v == s) dist[v] = 0;
-	  else dist[v] = SP.INF;
-	  pred[v] = SP.NIL;
+	  else dist[v] = INF;
+	  pred[v] = NIL;
 	}
 	
 	for (int i = 0; i < g.size(); i++) {
@@ -27,7 +27,7 @@ public class SPImpl implements SP {
 		}
 	  }
 	}
- 
+	
 	for (int u = 0; u < g.size(); u++) {
 	  for (int j = 0; j < g.deg(u); j++) {
 		int v = g.succ(u, j);
@@ -40,7 +40,7 @@ public class SPImpl implements SP {
   
   @Override
   public void dijkstra(WeightedGraph g, int s) {
-	if(g == null || (s < 0 || s >= g.size())) return;
+	if (g == null || (s < 0 || s >= g.size())) return;
 	BinHeap<Double, Integer> heap = new BinHeap<>();
 	BinHeap.Entry<Double, Integer>[] entries = new BinHeap.Entry[g.size()];
 	
@@ -49,8 +49,8 @@ public class SPImpl implements SP {
 	
 	for (int v = 0; v < g.size(); v++) {
 	  if (v == s) dist[v] = 0;
-	  else dist[v] = SP.INF;
-	  pred[v] = SP.NIL;
+	  else dist[v] = INF;
+	  pred[v] = NIL;
 	  
 	  entries[v] = heap.insert(dist[v], v);
 	}
@@ -76,13 +76,13 @@ public class SPImpl implements SP {
   
   @Override
   public double dist(int v) {
-    if(v < 0 || v >= dist.length) return -1;
+	if (v < 0 || v >= dist.length) return -1;
 	return dist[v];
   }
   
   @Override
   public int pred(int v) {
-	if(v < 0 || v >= pred.length) return -1;
+	if (v < 0 || v >= pred.length) return -1;
 	return pred[v];
   }
 }

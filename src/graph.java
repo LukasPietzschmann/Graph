@@ -126,6 +126,7 @@ interface DFS {
   // Das heißt: sequ(0) ist der Knoten mit der kleinsten
   // Abschlusszeit, sequ(g.size() - 1) der mit der größten.
   int sequ(int i);
+  
 }
 
 

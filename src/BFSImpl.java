@@ -3,11 +3,12 @@ import java.util.*;
 public class BFSImpl implements BFS {
   private int[] dist;
   private int[] pred;
-  private Queue<Integer> q = new LinkedList<>();
   
   @Override
   public void search(Graph g, int s) {
-    if(g == null || (s < 0 || s >= g.size())) return;
+	if (g == null || (s < 0 || s >= g.size())) return;
+	Queue<Integer> q = new LinkedList<>();
+	
 	dist = new int[g.size()];
 	pred = new int[g.size()];
 	int u;
@@ -19,7 +20,6 @@ public class BFSImpl implements BFS {
 	}
 	
 	dist[s] = 0;
-	
 	q.add(s);
 	
 	while (!q.isEmpty()) {
@@ -39,13 +39,13 @@ public class BFSImpl implements BFS {
   
   @Override
   public int dist(int v) {
-    if(v < 0 || v >= dist.length) return -1;
+	if (v < 0 || v >= dist.length) return -1;
 	return dist[v];
   }
   
   @Override
   public int pred(int v) {
-	if(v < 0 || v >= pred.length) return -1;
+	if (v < 0 || v >= pred.length) return -1;
 	return pred[v];
   }
 }

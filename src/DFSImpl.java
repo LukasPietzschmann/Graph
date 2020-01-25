@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class DFSImpl implements DFS {
   DFSGraph dg;
-  ArrayList<Integer> sortedQueue;
+  ArrayList<Integer> sequ;
   
   @Override
   public void search(Graph g) {
-    if(g == null) return;
-	sortedQueue = new ArrayList<>();
+	if (g == null) return;
+	sequ = new ArrayList<>();
 	dg = new DFSGraph(g);
 	
 	for (int u = 0; u < g.size(); u++) {
@@ -18,28 +18,27 @@ public class DFSImpl implements DFS {
 	}
   }
   
-  private boolean search(int u, DFSGraph dg, boolean breakIfCircle) {
+  private boolean search(int u, DFSGraph dg, boolean breakIfCycle) {
 	dg.setDiscovery(u);
 	for (int i = 0; i < dg.graph.deg(u); i++) {
 	  int v = dg.graph.succ(u, i);
 	  
 	  if (dg.colors[v] == DFSGraph.WHITE) {
 		dg.pred[v] = u;
-		if (!search(v, dg, breakIfCircle)) return false;
-		//TODO evtl doch mit Exception lösen und nicht mit Rückgabewert, funktioniert aber auch super so :)
-	  }else if (breakIfCircle && dg.colors[v] == DFSGraph.GREY) return false;
+		if (!search(v, dg, breakIfCycle)) return false;
+	  }else if (breakIfCycle && dg.colors[v] == DFSGraph.GREY) return false;
 	}
 	
 	dg.setCompletion(u);
-	sortedQueue.add(u);
+	sequ.add(u);
 	
 	return true;
   }
   
   @Override
   public void search(Graph g, DFS d) {
-    if(g == null || d == null) return;
-	sortedQueue = new ArrayList<>();
+	if (g == null || d == null) return;
+	sequ = new ArrayList<>();
 	dg = new DFSGraph(g);
 	
 	for (int i = g.size() - 1; i >= 0; i--) {
@@ -53,8 +52,8 @@ public class DFSImpl implements DFS {
   
   @Override
   public boolean sort(Graph g) {
-    if(g == null) return false;
-	sortedQueue = new ArrayList<>();
+	if (g == null) return false;
+	sequ = new ArrayList<>();
 	dg = new DFSGraph(g);
 	
 	for (int u = 0; u < g.size(); u++) {
@@ -69,20 +68,20 @@ public class DFSImpl implements DFS {
   
   @Override
   public int det(int v) {
-    if(v < 0 || v >= dg.discovery.length) return -1;
+	if (v < 0 || v >= dg.discovery.length) return -1;
 	return dg.discovery[v];
   }
   
   @Override
   public int fin(int v) {
-	if(v < 0 || v >= dg.completion.length) return -1;
+	if (v < 0 || v >= dg.completion.length) return -1;
 	return dg.completion[v];
   }
   
   @Override
   public int sequ(int i) {
-	if(i < 0 || i >= sortedQueue.size()) return -1;
-	return sortedQueue.get(i);
+	if (i < 0 || i >= sequ.size()) return -1;
+	return sequ.get(i);
   }
   
   private static class DFSGraph {
