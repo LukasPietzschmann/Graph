@@ -10,7 +10,7 @@ public class MSFImpl implements MSF {
 	pred = new int[g.size()];
 	
 	for (int v = 0; v < g.size(); v++) {
-	  if (v != s) entries[v] = heap.insert((double) NIL, v);
+	  if (v != s) entries[v] = heap.insert(Double.POSITIVE_INFINITY, v);
 	  pred[v] = NIL;
 	}
 	
@@ -20,7 +20,7 @@ public class MSFImpl implements MSF {
 	  for (int i = 0; i < g.deg(u); i++) {
 		int v = g.succ(u, i);
 		
-		if (heap.contains(entries[v]) && ((Double) entries[v].prio() == NIL || g.weight(u, i) < (Double) entries[v].prio())) {
+		if (heap.contains(entries[v]) && g.weight(u, i) < (Double) entries[v].prio()) {
 		  heap.changePrio(entries[v], g.weight(u, i));
 		  pred[v] = u;
 		}
