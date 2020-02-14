@@ -5,6 +5,15 @@ class GraphTest {
   // hinzugefügt werden.)
   private static Graph[] graphs = {
   		new GraphImpl(new int[][]{
+				{0, 1},
+				{0, 2, 3},
+				{1, 3},
+				{1},
+				{3, 5},
+				{4, 5}
+		}),
+  		
+  		new GraphImpl(new int[][]{
 		}),
   		
 		  // Beispiel eines ungewichteten Graphen.

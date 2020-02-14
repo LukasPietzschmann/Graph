@@ -55,6 +55,8 @@ public class SCCImpl implements SCC {
 	}
   }
   
+  // FIXME wirft manchmal NullPointerException, da es vorkommt, dass
+  // nicht alle Knoten in die Map geschrieben werden
   @Override
   public int component(int v) {
     if(v < 0 || v >= components.size()) return -1;
